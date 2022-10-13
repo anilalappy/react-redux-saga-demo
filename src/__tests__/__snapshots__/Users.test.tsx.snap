@@ -1,0 +1,194 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`verify user container with snap shot user component snapshot verification 1`] = `
+<div
+  className="MuiContainer-root MuiContainer-maxWidthLg"
+  data-testid="user-container"
+>
+  <div
+    style={
+      Object {
+        "right": "50px",
+        "textAlign": "right",
+        "textDecoration": "none",
+      }
+    }
+  >
+    <a
+      data-testid="add-user-link"
+      href="/add-edit"
+      onClick={[Function]}
+      style={
+        Object {
+          "color": "#3f51b5",
+          "textDecoration": "none",
+        }
+      }
+    >
+      Add New User
+    </a>
+  </div>
+  <hr />
+  <div
+    style={
+      Object {
+        "backgroundColor": "#bcbcf7",
+        "border": "1px solid #6161ed",
+        "borderRadius": "10px",
+        "margin": "1rem 0 1rem 0",
+        "width": "100%",
+      }
+    }
+  >
+    <div
+      className="MuiGrid-root MuiGrid-container"
+    >
+      <div
+        className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-9"
+      >
+        <div
+          className="MuiCardContent-root"
+        >
+          <p
+            className="MuiTypography-root MuiTypography-body1 MuiTypography-gutterBottom"
+            style={
+              Object {
+                "fontSize": 14,
+              }
+            }
+          >
+            Name: 
+            Leanne Graham
+          </p>
+          <p
+            className="MuiTypography-root MuiTypography-body1"
+            style={
+              Object {
+                "marginBottom": 1.5,
+              }
+            }
+          >
+            Username: 
+            Bret
+          </p>
+          <h6
+            className="MuiTypography-root MuiTypography-subtitle2"
+            style={
+              Object {
+                "marginBottom": 1.5,
+              }
+            }
+          >
+            Email: 
+            Sincere@april.biz
+          </h6>
+          <h6
+            className="MuiTypography-root MuiTypography-subtitle2"
+            style={
+              Object {
+                "marginBottom": 1.5,
+              }
+            }
+          >
+            Address: 
+          </h6>
+          <h6
+            className="MuiTypography-root MuiTypography-subtitle2"
+            style={
+              Object {
+                "marginBottom": 1.5,
+                "marginLeft": "0.5rem",
+              }
+            }
+          >
+            City: 
+            Gwenborough
+          </h6>
+          <h6
+            className="MuiTypography-root MuiTypography-subtitle2"
+            style={
+              Object {
+                "marginBottom": 1.5,
+                "marginLeft": "0.5rem",
+              }
+            }
+          >
+            ZipCode: 
+            92998-3874
+          </h6>
+        </div>
+      </div>
+      <div
+        className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-2"
+        style={
+          Object {
+            "margin": "auto",
+            "textAlign": "left",
+          }
+        }
+      >
+        <a
+          href="/add-edit/1"
+          onClick={[Function]}
+          style={
+            Object {
+              "textDecoration": "none",
+            }
+          }
+        >
+          <button
+            className="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-textSizeSmall MuiButton-sizeSmall"
+            disabled={false}
+            onBlur={[Function]}
+            onDragLeave={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchEnd={[Function]}
+            onTouchMove={[Function]}
+            onTouchStart={[Function]}
+            tabIndex={0}
+            type="button"
+          >
+            <span
+              className="MuiButton-label"
+            >
+              Edit
+            </span>
+          </button>
+        </a>
+        <button
+          className="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textSecondary MuiButton-textSizeSmall MuiButton-sizeSmall"
+          disabled={false}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onDragLeave={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          tabIndex={0}
+          type="button"
+        >
+          <span
+            className="MuiButton-label"
+          >
+            Delete
+          </span>
+        </button>
+      </div>
+      <div
+        className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-1"
+      />
+    </div>
+  </div>
+</div>
+`;
