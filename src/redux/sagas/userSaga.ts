@@ -25,8 +25,7 @@ function* fetchUsers(): any {
 
 function* getUserDetail(payload: any): any {
   try {
-    const user = yield call(getUser, { id: payload.id });
-    yield put({ type: "GET_USER_SUCCESS", userDetail: user });
+    yield put({ type: "GET_USER_SUCCESS", userDetail: {} });
   } catch (e: any) {
     yield put({ type: "GET_USER_FAILED", message: e?.message });
   }
@@ -54,7 +53,7 @@ function* addUser(payload: any) {
     yield put({ type: "ADD_USER_SUCCESS" });
     yield put({
       type: "GET_USERS_SUCCESS",
-      users: [...payload?.users, payload?.user],
+      users: payload,
     });
   } catch (e: any) {
     yield put({ type: "ADD_USER_FAILED", message: e?.message });

@@ -1,9 +1,8 @@
-import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { Prompt, useHistory, useParams } from "react-router";
 import { Container, UserForm } from "../components/common/Container";
-import { addUser, getUserDetail, updateUser } from "../redux/actions/users";
+import { addUser,  updateUser } from "../redux/actions/users";
 import parse from "html-react-parser";
 import { User } from "../redux/types";
 
@@ -45,21 +44,7 @@ function AddEdit() {
     if (param && param.id) dispatch(updateUser(param));
     else dispatch(addUser(param, users));
 
-    history.push("/");
   });
-
-  useEffect(() => {
-    if (userId) dispatch(getUserDetail(userId));
-    register("name", {
-      validate: (value): any => value?.length || "Name is required.",
-    });
-    register("username", {
-      validate: (value): any => value?.length || "Username is required.",
-    });
-    register("email", {
-      validate: (value): any => value?.length || "Email is required.",
-    });
-  }, [register, userId]);
 
   /* const handleUpdateUser = (key: any, value: any) => {
     setValue(key, value);

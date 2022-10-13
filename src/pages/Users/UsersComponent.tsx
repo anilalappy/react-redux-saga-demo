@@ -21,9 +21,7 @@ const Users = () => {
   }, []);
 
   return (
-    <Container
-      data-testid="user-container"
-    >
+    <Container data-testid="user-container">
       {loading && <Loader />}
       <div
         style={{ textDecoration: "none", textAlign: "right", right: "50px" }}
@@ -41,10 +39,9 @@ const Users = () => {
         users &&
         users?.length > 0 &&
         users.map((user: User) => <CardContainer user={user} key={user?.id} />)}
-      {users?.length === 0 && <NoData>No users available!</NoData>}
 
       {error && !loading && <Typography>{error}</Typography>}
     </Container>
-  )
+  );
 };
 export default Users;
