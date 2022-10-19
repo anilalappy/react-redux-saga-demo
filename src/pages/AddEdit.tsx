@@ -2,9 +2,10 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { Prompt, useHistory, useParams } from "react-router";
 import { Container, UserForm } from "../components/common/Container";
-import { addUser,  updateUser } from "../redux/actions/users";
+import { addUser,  getUserDetail,  updateUser } from "../redux/actions/users";
 import parse from "html-react-parser";
 import { User } from "../redux/types";
+import { useEffect } from "react";
 
 function AddEdit() {
   const { id: userId }: any = useParams();
@@ -32,6 +33,9 @@ function AddEdit() {
   }>({
     defaultValues: userDetail,
   });
+  useEffect(()=>{
+    dispatch(getUserDetail(userId))
+  },[userId])
   if (userDetail && userId) {
     setValue("id", userDetail.id);
     setValue("name", userDetail.name);
@@ -40,9 +44,29 @@ function AddEdit() {
     setValue("city", userDetail.address.city);
     setValue("zipcode", userDetail.address.zipcode);
   }
+  const highestId = users
+    ? users.reduce((final, item) =>
+        (item?.id ? item?.id : 0) > (final?.id ? final?.id : 0) ? item : final
+      ).id as number 
+    : 0;
+  const refactorData = (param:any,highestId:number)=>{
+    const user = {
+      id:highestId +1,
+      name:param.name, 
+      username:param.username,
+      email:param.email,
+      address:{
+        city:param.city,
+        zipcode:param.zipcode
+      }
+  }
+  return user;
+}
   const onSubmit = handleSubmit((param) => {
     if (param && param.id) dispatch(updateUser(param));
-    else dispatch(addUser(param, users));
+    else dispatch(addUser(refactorData(param,highestId), users));
+    history.push('/')
+
 
   });
 
@@ -60,17 +84,27 @@ function AddEdit() {
             {...register("id")}
             // onChange={(e) => handleUpdateUser("name", e.target.value)}
           />
-          <input data-testid="user-name" {...register("name")} />
+          <input
+            data-testid="user-name"
+            {...register("name", { required: "Name is Required" })}
+          />
           {errors?.name && (
             <p style={{ color: "red" }}>{errors.name.message}</p>
           )}
           <label>Username*</label>
-          <input data-testid="user-username" {...register("username")} />
+          <input
+            data-testid="user-username"
+            {...register("username", { required: "Username is Required" })}
+          />
           {errors?.username && (
             <p style={{ color: "red" }}>{errors.username.message}</p>
           )}
           <label>Email*</label>
-          <input data-testid="user-email" type="text" {...register("email")} />
+          <input
+            data-testid="user-email"
+            type="text"
+            {...register("email", { required: "Email is Required" })}
+          />
           {errors?.email && (
             <p style={{ color: "red" }}>{errors.email.message}</p>
           )}

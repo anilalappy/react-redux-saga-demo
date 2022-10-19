@@ -22,7 +22,7 @@ const CardContainer: React.FC<Props> = ({ user }) => {
   const [selectedUser, setSelectedUser] = React.useState<User>();
   const [open, setOpen] = React.useState(false);
   const [alert, setAlert] = React.useState(false);
-  const actionMessage: any = useSelector((state: any) => state.users);
+  const actionMessage: any = useSelector((state: any) => state.users.actionMessage);
   const users: any = useSelector((state: any) => state.users.users);
  
   const dispatch = useDispatch();
@@ -37,12 +37,12 @@ const CardContainer: React.FC<Props> = ({ user }) => {
   }
 
   useEffect(() =>{
-    if(actionMessage && actionMessage?.actionMessage?.message) setAlert(true)
+    if(actionMessage && actionMessage?.message)setAlert(true)
 
   },[actionMessage]) 
 
-  const vertical = 'top';
-  const horizontal  = 'right';
+  const vertical = 'bottom';
+  const horizontal  = 'center';
 
   const { id, name, username, email, address } = user;
   return (
@@ -84,7 +84,7 @@ const CardContainer: React.FC<Props> = ({ user }) => {
         </Dialog>
         <Snackbar anchorOrigin={{ vertical, horizontal }} open={alert} autoHideDuration={2000} onClose={()=>setAlert(false)}>
         <Alert onClose={()=>setAlert(false)} severity={actionMessage?.actionMessage?.type} style={{ width: '100%' }}>
-          {actionMessage?.actionMessage?.message}
+          {actionMessage?.message}
         </Alert>
       </Snackbar>
         </div>

@@ -10,6 +10,9 @@ import { User } from "../types";
 function getUsersData() {
   return getRequest("users");
 }
+function fetchUserDetail(id:number) {
+  return getRequest(`users/${id}`);
+}
 function getUser(payload: any) {
   return getRequest(`users/${payload.id}`);
 }
@@ -25,7 +28,8 @@ function* fetchUsers(): any {
 
 function* getUserDetail(payload: any): any {
   try {
-    yield put({ type: "GET_USER_SUCCESS", userDetail: {} });
+    const userDetail = yield call(fetchUserDetail,payload.id)
+    yield put({ type: "GET_USER_SUCCESS", userDetail: userDetail});
   } catch (e: any) {
     yield put({ type: "GET_USER_FAILED", message: e?.message });
   }
@@ -50,10 +54,11 @@ function* deleteUser(payload: any) {
 function* addUser(payload: any) {
   try {
     yield call<any>(postRequest, { endPoint: "users", user: payload?.user });
-    yield put({ type: "ADD_USER_SUCCESS" });
+    payload.users.push(payload.user)
+    yield put({ type: "ADD_USER_SUCCESS" ,users:payload.users});
     yield put({
       type: "GET_USERS_SUCCESS",
-      users: payload,
+      users: payload.users,
     });
   } catch (e: any) {
     yield put({ type: "ADD_USER_FAILED", message: e?.message });
