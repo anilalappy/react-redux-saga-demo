@@ -1,4 +1,5 @@
-import { all, call, put, takeLatest } from "redux-saga/effects";
+import { useSelector } from "react-redux";
+import { all, call, put, select, takeLatest } from "redux-saga/effects";
 import {
   deleteRequest,
   getRequest,
@@ -28,7 +29,9 @@ function* fetchUsers(): any {
 
 function* getUserDetail(payload: any): any {
   try {
-    const userDetail = yield call(fetchUserDetail,payload.id)
+    const users: User[] =yield  select((state: any) => state?.users?.users);
+    const userDetail = users.find((user)=>user?.id == payload?.id)
+    // const userDetail = yield call(fetchUserDetail,payload.id)
     yield put({ type: "GET_USER_SUCCESS", userDetail: userDetail});
   } catch (e: any) {
     yield put({ type: "GET_USER_FAILED", message: e?.message });
@@ -37,13 +40,15 @@ function* getUserDetail(payload: any): any {
 
 function* deleteUser(payload: any) {
   try {
-    const users: User[] = payload.users;
     yield all([
       call<any>(deleteRequest, { endPoint: "users", id: payload?.user?.id }),
     ]);
+    const users: User[] =yield  select((state: any) => state?.users?.users);
+    const usersUpdated = users.filter((user:any) => user.id != payload?.user?.id)
+    
     yield put({
       type: "DELETE_USER_SUCCESS",
-      users: users,
+      users: usersUpdated,
       deletedId: payload?.user?.id,
     });
   } catch (e: any) {
@@ -68,15 +73,19 @@ function* addUser(payload: any) {
 
 function* updateUser(payload: any) {
   try {
-    yield call<any>(putRequest, {
-      endPoint: "users",
-      param: JSON.stringify(payload?.user),
-    });
-    yield put({ type: "UPDATE_USER_SUCCESS" });
+    // yield call<any>(putRequest, {
+    //   endPoint: "users",
+    //   param: JSON.stringify(payload?.user),
+    // });
+    const users: User[] =yield  select((state: any) => state?.users?.users);
+    const findIndex = users.findIndex(user=>user?.id == payload?.user?.id)
+    users[findIndex] = payload?.user
+    yield put({ type: "UPDATE_USER_SUCCESS",users});
+    
   } catch (e: any) {
     yield put({ type: "UPDATE_USER_FAILED", message: e?.message });
   }
-  yield fetchUsers();
+  // yield fetchUsers();
 }
 
 function* userSaga() {

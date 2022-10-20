@@ -13,15 +13,14 @@ const Users = () => {
   const users: User[] = useSelector((state: any) => state?.users?.users);
   const loading: boolean = useSelector((state: any) => state?.users?.loading);
   const error: string = useSelector((state: any) => state?.users?.error);
-  const actionMessage: any = useSelector((state: any) => state?.users);
+  const actionMessage: any = useSelector((state: any) => state?.users.actionMessage);
   if(users && users?.length > 0){
     users.sort(function(a, b) {
       return ((b.id as number) - (a.id as number));
   })
   }
   useEffect(() => {
-    if (actionMessage.users && actionMessage.users.length < 1)
-      dispatch(getUsers([]));
+    if (users && users.length < 1)  dispatch(getUsers([]))
   }, []);
 
   return (

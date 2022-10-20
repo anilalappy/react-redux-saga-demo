@@ -35,7 +35,7 @@ export default function users(state = initialState, action: any) {
       return {
         ...state,
         loading: false,
-        users: action.users.filter((user:any) => user.id !== action.deletedId) ,
+        users: action.users,
         actionMessage: {
           type:'success',
           message:"User deleted successfully."

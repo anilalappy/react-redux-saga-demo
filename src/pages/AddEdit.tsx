@@ -51,7 +51,7 @@ function AddEdit() {
     : 0;
   const refactorData = (param:any,highestId:number)=>{
     const user = {
-      id:highestId +1,
+      id:highestId +10,
       name:param.name, 
       username:param.username,
       email:param.email,
